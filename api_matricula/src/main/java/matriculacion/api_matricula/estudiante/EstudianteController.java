@@ -1,4 +1,4 @@
-package matriculacion.api_matricula.tipo_asignatura;
+package matriculacion.api_matricula.estudiante;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,34 +13,33 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/tipoasignatura")
+@RequestMapping("api/estudiante")
 @CrossOrigin({"*"})
-public class TipoAsignaturaController {
-    @Autowired TipoAsignaturaService tipoAsignaturaService;
+public class EstudianteController {
+    @Autowired EstudianteService estudianteService;
 
     @GetMapping("/")
-    public List<TipoAsignatura> findAll(){
-        return tipoAsignaturaService.findAll();
+    public List<Estudiante> findAll(){
+        return estudianteService.findAll();
     }
 
     @GetMapping("/{id}/")
-    public TipoAsignatura findById(@PathVariable Long id){
-        return tipoAsignaturaService.findById(id);
+    public Estudiante findById(@PathVariable Long id){
+        return estudianteService.findById(id);
     }
 
     @PostMapping("/")
-    public TipoAsignatura save(@RequestBody TipoAsignatura entity){
-        return tipoAsignaturaService.save(entity);
+    public Estudiante save(@RequestBody Estudiante entity){
+        return estudianteService.save(entity);
     }
 
     @PutMapping("/{id}/")
-    public TipoAsignatura update(@RequestBody TipoAsignatura entity){
-        return tipoAsignaturaService.save(entity);
+    public Estudiante update(@RequestBody Estudiante entity){
+        return estudianteService.save(entity);
     }
 
     @DeleteMapping("/{id}/")
     public void deleteById(@PathVariable Long id){
-        tipoAsignaturaService.deleteById(id);
+        estudianteService.deleteById(id);
     }
 }
-

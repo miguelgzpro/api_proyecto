@@ -1,5 +1,4 @@
-package bff.bweb.factura;
-
+package bff.bweb.matricula;
 
 import java.util.List;
 
@@ -10,27 +9,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "bff.factura", url = "http://localhost:8083/api/factura")
-public interface FacturaClient {
+@FeignClient(name = "bff.matricula", url = "http://localhost:8083/api/matricula")
+public interface MatriculaClient {
 
     @GetMapping("/{id}/")
-    FacturaDTO findFacturaById(@PathVariable("id") Long id);
+    MatriculaDTO findMatriculaById(@PathVariable("id") Long id);
 
     @GetMapping("/pdf/{id}/")
     ResponseEntity<byte[]> pdfById( @PathVariable("id") Long id);
 
     @GetMapping("/")
-    List<FacturaDTO> findAll();
+    List<MatriculaDTO> findAll();
 
     @PostMapping("/") 
-    FacturaDTO save(FacturaDTO entity);
+    MatriculaDTO save(MatriculaDTO entity);
 
     @DeleteMapping("/{id}/")
     void deleteById(@PathVariable("id")  Long id);
 
     @PutMapping("/{id}/")
-    FacturaDTO update(@PathVariable("id")  Long id, FacturaDTO entity);
+    MatriculaDTO update(@PathVariable("id")  Long id, MatriculaDTO entity);
 
 }

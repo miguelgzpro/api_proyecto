@@ -1,34 +1,36 @@
-package bff.bweb.product;
+package bff.bweb.carrera;
 
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "bff.product", url = "http://localhost:8082/api/product")
-public interface ProductClient {
+@FeignClient(name = "bff.carrera", url = "http://localhost:8083/api/carrera")
+public interface CarreraClient {
 
     @GetMapping("/{id}/")
-    ProductDTO findProductById(@PathVariable("id") Long id);
+    CarreraDTO findCarreraById(@PathVariable("id") Long id);
+
+    @GetMapping("/pdf/{id}/")
+    ResponseEntity<byte[]> pdfById( @PathVariable("id") Long id);
 
     @GetMapping("/")
-    List<ProductDTO> findAll(@SpringQueryMap QParams params);
-
-    @GetMapping("/")
-    List<ProductDTO> findAll();
+    List<CarreraDTO> findAll();
 
     @PostMapping("/") 
-    ProductDTO save(ProductDTO entity);
+    CarreraDTO save(CarreraDTO entity);
 
     @DeleteMapping("/{id}/")
     void deleteById(@PathVariable("id")  Long id);
 
     @PutMapping("/{id}/")
-    ProductDTO update(@PathVariable("id")  Long id, ProductDTO entity);
+    CarreraDTO update(@PathVariable("id")  Long id, CarreraDTO entity);
 
 }
+
